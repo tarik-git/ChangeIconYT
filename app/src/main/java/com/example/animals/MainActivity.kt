@@ -1,5 +1,7 @@
 package com.example.animals
 
+import android.content.ComponentName
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -57,6 +59,11 @@ class MainActivity : ComponentActivity() {
                             iconRes = R.drawable.cat,
                             title = "Cat",
                             aliasName = "$packageName.MainActivityCat"
+                        ),
+                        IconItem(
+                            iconRes = R.drawable.parrot,
+                            title = "Parrot",
+                            aliasName = "$packageName.MainActivityParrot"
                         )
                     )
                     LazyColumn (
@@ -103,6 +110,27 @@ class MainActivity : ComponentActivity() {
     }
 
     fun setIcon(aliasName: String) {
+        val aliases = listOf(
+            "$packageName.MainActivityDog",
+            "$packageName.MainActivityCat",
+            "$packageName.MainActivityParrot"
+        )
+
+        // Disable all launcher aliases
+        for (alias in aliases) {
+            packageManager.setComponentEnabledSetting(
+                ComponentName(baseContext, alias),
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP
+            )
+        }
+
+        // Enable the selected launcher alias
+        packageManager.setComponentEnabledSetting(
+            ComponentName(baseContext, aliasName),
+            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+            PackageManager.DONT_KILL_APP
+        )
 
     }
 

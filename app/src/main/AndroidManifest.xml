@@ -48,6 +48,20 @@
             </intent-filter>
         </activity-alias>
 
+        <activity-alias
+            android:name=".MainActivityParrot"
+            android:targetActivity=".MainActivity"
+            android:enabled="false"
+            android:label="@string/app_name"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_parrot"
+            android:roundIcon="@mipmap/ic_launcher_parrot_round">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
     </application>
 
 </manifest>
